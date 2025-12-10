@@ -14,7 +14,7 @@ The core objective is to take a massive, general-purpose model (like Mistral-7B 
 The project is designed to run in a **Kaggle Notebook** environment (Dual T4 GPUs recommended) or a local environment with at least 16GB VRAM. Ensure you have the necessary libraries installed (PyTorch, Transformers, Datasets, Accelerate, PEFT, BitsAndBytes, Scikit-Learn, Pandas, Numpy).
 
 ## Project Structure & Scripts
-### 'Dataset'
+### Dataset
 We utilize the **IMDB Large Movie Review Dataset**, a standard benchmark for binary sentiment classification.
 *   **Source:** [Hugging Face Datasets (`imdb`)](https://huggingface.co/datasets/imdb)
 *   **Size:** 50,000 highly polar movie reviews.
@@ -81,5 +81,6 @@ While Mistral achieved high accuracy (95%), its throughput (1.15 samples/sec) is
 ### 4. An Addition for the Baseline 
 
 The TF-IDF baseline achieved **84% accuracy** with negligible latency (1.33ms). This serves as a reminder that for many business use cases, simple statistical methods are "good enough" and vastly cheaper than Deep Learning solutions.
+
 
 
