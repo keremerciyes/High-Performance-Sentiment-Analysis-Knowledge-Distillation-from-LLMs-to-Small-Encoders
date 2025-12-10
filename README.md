@@ -10,7 +10,7 @@ The core objective is to take a massive, general-purpose model (like Mistral-7B 
 *   **Performance:** The RoBERTa-distilled student retained **87% accuracy** while reducing the model size by **~20x**.
 *   **The LLM Bottleneck:** While Mistral-7B achieves high accuracy (95%), its latency (522ms/sample) makes it unsuitable for real-time classification, validating the need for distillation.
 
-## 🛠️ Installation & Requirements
+## Installation & Requirements
 The project is designed to run in a **Kaggle Notebook** environment (Dual T4 GPUs recommended) or a local environment with at least 16GB VRAM. Ensure you have the necessary libraries installed (PyTorch, Transformers, Datasets, Accelerate, PEFT, BitsAndBytes, Scikit-Learn, Pandas, Numpy).
 
 ## Project Structure & Scripts
@@ -47,7 +47,7 @@ The project is designed to run in a **Kaggle Notebook** environment (Dual T4 GPU
 *   Measures **Latency** (ms/sample), **Throughput** (samples/sec), **Model Size**, and **Accuracy**.
 *   Includes aggressive memory cleaning to allow sequential testing on limited GPU memory.
 
-## 📊 Experimental Results
+## Experimental Results
 
 | Model | Type | Accuracy | Latency (ms) | Throughput (samp/s) | Speedup (x) | Size (MB) | Params (M) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -57,7 +57,7 @@ The project is designed to run in a **Kaggle Notebook** environment (Dual T4 GPU
 | **Student (from Mistral)** | Student | **0.51** | 4.07 | 115.05 | **4.21** | 1022.69 | 66.96 |
 | **Teacher (Mistral-7B)** | Teacher | **0.95** | 522.36 | 1.15 | 0.03 | 15000.00 | 7000.00 |
 
-## 📝 Discussion & Analysis
+## Discussion & Analysis
 
 ### 1. The Success of Encoder Distillation
 The **Student distilled from RoBERTa** was the most balanced model. It achieved a **2.89x speedup** over its teacher while maintaining **87% accuracy**. This proves that "White-Box" distillation (access to internal weights/features) is highly effective. The drop from 96% to 87% suggests that further hyperparameter tuning (specifically the weight of the Feature Loss) could close the gap further.
@@ -71,6 +71,7 @@ The **Student distilled from Mistral** failed to converge (0.51 accuracy is equi
 The benchmark reveals a critical engineering reality: **Mistral-7B is ~30x slower than RoBERTa-Large**.
 While Mistral achieved high accuracy (95%), its throughput (1.15 samples/sec) is too low for high-volume batch processing. This confirms that for specific, narrow tasks like Sentiment Analysis, **Encoder models (RoBERTa/BERT) remain the superior engineering choice** over Generative LLMs regarding cost and latency.
 
-### 4. The Baseline Surprise
+### 4. An Addition for the Baseline 
 
 The TF-IDF baseline achieved **84% accuracy** with negligible latency (1.33ms). This serves as a reminder that for many business use cases, simple statistical methods are "good enough" and vastly cheaper than Deep Learning solutions.
+
