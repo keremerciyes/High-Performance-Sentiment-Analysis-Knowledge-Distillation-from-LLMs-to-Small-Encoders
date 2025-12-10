@@ -1,11 +1,11 @@
 # High-Performance Sentiment Analysis: Knowledge Distillation from LLMs to Small Encoders
 
-## 📌 Project Overview
+## Project Overview
 This project explores the efficiency-accuracy trade-offs in deploying Natural Language Processing (NLP) models for sentiment analysis. We investigate **Knowledge Distillation (KD)** techniques to transfer the capabilities of Large Language Models (LLMs) and Large Encoders into compact, production-ready models.
 
 The core objective is to take a massive, general-purpose model (like Mistral-7B or RoBERTa-Large) and compress its knowledge into a small, fast student model (DistilBERT) without significant loss of accuracy.
 
-## 🚀 Executive Summary of Results
+## Executive Summary of Results
 *   **Efficiency:** Distilled models achieved a **2.89x speedup** over RoBERTa and a massive **128x speedup** over Mistral-7B.
 *   **Performance:** The RoBERTa-distilled student retained **87% accuracy** while reducing the model size by **~20x**.
 *   **The LLM Bottleneck:** While Mistral-7B achieves high accuracy (95%), its latency (522ms/sample) makes it unsuitable for real-time classification, validating the need for distillation.
@@ -13,7 +13,7 @@ The core objective is to take a massive, general-purpose model (like Mistral-7B 
 ## 🛠️ Installation & Requirements
 The project is designed to run in a **Kaggle Notebook** environment (Dual T4 GPUs recommended) or a local environment with at least 16GB VRAM. Ensure you have the necessary libraries installed (PyTorch, Transformers, Datasets, Accelerate, PEFT, BitsAndBytes, Scikit-Learn, Pandas, Numpy).
 
-## 📂 Project Structure & Scripts
+## Project Structure & Scripts
 
 ### `01_baseline.py`
 **Goal:** Establish a performance baseline.
@@ -72,4 +72,5 @@ The benchmark reveals a critical engineering reality: **Mistral-7B is ~30x slowe
 While Mistral achieved high accuracy (95%), its throughput (1.15 samples/sec) is too low for high-volume batch processing. This confirms that for specific, narrow tasks like Sentiment Analysis, **Encoder models (RoBERTa/BERT) remain the superior engineering choice** over Generative LLMs regarding cost and latency.
 
 ### 4. The Baseline Surprise
+
 The TF-IDF baseline achieved **84% accuracy** with negligible latency (1.33ms). This serves as a reminder that for many business use cases, simple statistical methods are "good enough" and vastly cheaper than Deep Learning solutions.
