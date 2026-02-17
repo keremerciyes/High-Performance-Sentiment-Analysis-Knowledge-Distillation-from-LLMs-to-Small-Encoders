@@ -1,7 +1,7 @@
 # High-Performance Sentiment Analysis: Knowledge Distillation from LLMs to Small Encoders
 
 ## Project Overview
-This project explores the efficiency-accuracy trade-offs in deploying Natural Language Processing (NLP) models for sentiment analysis. We investigate **Knowledge Distillation (KD)** techniques to transfer the capabilities of Large Language Models (LLMs) and Large Encoders into compact, production-ready models.
+This project explores the efficiency-accuracy trade-offs in deploying Natural Language Processing (NLP) models for sentiment analysis. I researched **Knowledge Distillation (KD)** techniques to transfer the capabilities of Large Language Models (LLMs) and Large Encoders into compact, production-ready models.
 
 The core objective is to take a massive, general-purpose model (like Mistral-7B or RoBERTa-Large) and compress its knowledge into a small, fast student model (DistilBERT) without significant loss of accuracy.
 
@@ -15,7 +15,7 @@ The project is designed to run in a **Kaggle Notebook** environment (Dual T4 GPU
 
 ## Project Structure & Scripts
 ### Dataset
-We utilize the **IMDB Large Movie Review Dataset**, a standard benchmark for binary sentiment classification.
+I used the **IMDB Large Movie Review Dataset**, a standard benchmark for binary sentiment classification.
 *   **Source:** [Hugging Face Datasets (`imdb`)](https://huggingface.co/datasets/imdb)
 *   **Size:** 50,000 highly polar movie reviews.
 *   **Split:** Balanced 50/50 split between training (25k) and testing (25k) sets.
@@ -47,7 +47,7 @@ We utilize the **IMDB Large Movie Review Dataset**, a standard benchmark for bin
 
 ### `04b_distill_from_mistral.py` (Black-Box Distillation)
 **Goal:** Transfer knowledge from Mistral to DistilBERT.
-*   **Method:** Since architectures differ (Decoder vs Encoder), we cannot match hidden states. We use Mistral to generate probability scores for "positive" vs "negative" tokens and train DistilBERT to mimic these soft labels.
+*   **Method:** Since architectures differ (Decoder vs Encoder), I cannot match hidden states. I use Mistral to generate probability scores for "positive" vs "negative" tokens and train DistilBERT to mimic these soft labels.
 
 ### `05_benchmark.py`
 **Goal:** Rigorous comparison of all models.
@@ -81,6 +81,7 @@ While Mistral achieved high accuracy (95%), its throughput (1.15 samples/sec) is
 ### 4. An Addition for the Baseline 
 
 The TF-IDF baseline achieved **84% accuracy** with negligible latency (1.33ms). This serves as a reminder that for many business use cases, simple statistical methods are "good enough" and vastly cheaper than Deep Learning solutions.
+
 
 
 
